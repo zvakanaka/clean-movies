@@ -1,0 +1,82 @@
+:root {
+  --medium-padding: .75rem;
+  --large-margin: 5.5em;
+  --medium-margin: .75rem;
+}
+body {
+  font-family: monospace;
+  margin: 0;
+  background: #ddd;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+video {
+  align-self: center;
+  width: 100%;
+  max-width: 80ch;
+  height: auto;
+}
+
+.mask {
+  position: absolute;
+  background: #222;
+  opacity: 0.8;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  cursor: pointer;
+}
+
+header {
+  font-size: 1.7rem;
+  background: #246;
+  color: beige;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15);
+}
+
+.sheet[open] { opacity: 0.95; }
+.sheet[open][right] { right: 0; }
+.sheet[open][left] { left: 0; }
+.sheet[right] { right: calc(-1 * var(--sheet-width)); }
+.sheet[left] { left: calc(-1 * var(--sheet-width)); }
+.sheet {
+  --sheet-width: 350px;
+  transition: right 250ms, left 250ms, opacity 250ms;
+  background: #789;
+  height: 100vh;
+  width: var(--sheet-width);
+  position: fixed;
+  top: 0;
+  color: beige;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--medium-padding);
+}
+.sheet .row .title {
+  font-size: 1.7rem;
+}
+.sheet .sheet-content {
+  padding: var(--medium-padding);
+}
+.sheet .side-picker {
+  display: flex;
+  justify-content: space-evenly;
+}
+.x, .burger { cursor: pointer; }
+
+article {
+  padding: var(--medium-padding);
+  margin: var(--medium-margin);
+  margin-top: var(--large-margin);
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15);
+  display: flex;
+  flex-direction: column;
+}

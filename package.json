@@ -1,0 +1,22 @@
+{
+  "name": "clean-movie-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "npx semistandard \"**/*[!.test].js\" --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Quinton",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "files-in-dir": "^1.0.0",
+    "hashify-matchify": "^1.0.0",
+    "mere-server": "^2.0.0",
+    "restify": "^8.4.0",
+    "restify-plugins": "^1.6.0"
+  },
+  "devDependencies": {
+    "semistandard": "^14.2.0"
+  }
+}
