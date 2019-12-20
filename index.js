@@ -13,7 +13,7 @@ const fileParts = require('./lib/file-name');
 const file = require('./lib/file');
 const VIDEO_PATH = require('./lib/video-path');
 
-const SUPPORTED_VIDEO_TYPES = [
+const SUPPORTED_VIDEO_TYPES = process.env.SUPPORTED_VIDEO_TYPES ? process.env.SUPPORTED_VIDEO_TYPES.split(',') : [
   'avi',
   'm4v',
   'mov',
@@ -38,7 +38,7 @@ const routes = [
         <ul class="movie-list">
         ${movies.map(movie => `
           <li class="movie-link">
-            <a href="${baseUrl}/play?movie=${movie}">${normalize(movie)}</a>
+            <a href="play?movie=${movie}">${normalize(movie)}</a>
           </li>
           `).join('')}
         </ul>
@@ -60,7 +60,7 @@ const routes = [
       return html`
 ${htmlParts.head({ title: `${normalizedFileName} | Clean Movie Server` })}
 ${htmlParts.header({ title: normalizedFileName })}
-  <video controls src="${baseUrl}/video-stream?movie=${fileName}"></video>
+  <video controls src="../video-stream?movie=${fileName}"></video>
   ${editMode ? htmlParts.editor() : ''}
 <script>
 let editArr = ${foundFilter ? JSON.stringify(foundFilter.filter, null, 2) : '[]'};
