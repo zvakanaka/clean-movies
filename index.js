@@ -9,6 +9,7 @@ const normalize = require('./lib/normalize');
 const html = require('./lib/html');
 const htmlParts = require('./views');
 const filters = require('./lib/filters');
+const subtitles = require('./lib/subtitles');
 const fileParts = require('./lib/file-name');
 const file = require('./lib/file');
 const VIDEO_PATH = require('./lib/video-path');
@@ -57,10 +58,15 @@ const routes = [
       const foundFilter = filters
         .find(filter => filter.name === fileParts(fileName).fileWithoutExtension);
 
+      const foundSubtitle = subtitles
+        .find(subtitle => subtitle.name === fileParts(fileName).fileWithoutExtension);
+
       return html`
-${htmlParts.head({ title: `${normalizedFileName} | Clean Movie Server` })}
+${htmlParts.head({ title: `${normalizedFileName} | Clean Movies` })}
 ${htmlParts.header({ title: normalizedFileName })}
-  <video controls src="../video-stream?movie=${fileName}"></video>
+  <video controls src="../video-stream?movie=${fileName}">
+    ${foundSubtitle ? `<track label="English" kind="subtitles" srclang="en" src="data:text/plain;base64,${Buffer.from(foundSubtitle.subtitle).toString('base64')}" default>` : ''}
+  </video>
   ${editMode ? htmlParts.editor() : ''}
 <script>
 let editArr = ${foundFilter ? JSON.stringify(foundFilter.filter, null, 2) : '[]'};
