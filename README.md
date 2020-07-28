@@ -26,6 +26,7 @@ Optionally create a file named `.env` for custom environment variables.
 ```
 VIDEO_PATH="/path/to/videos" # default $HOME/Videos
 FILTER_PATH="/path/to/filters" # default $VIDEO_PATH/filters
+THUMBS_PATH="/path/to/thumbs" # default $VIDEO_PATH/thumbs
 
 PORT=8888
 HOST=localhost

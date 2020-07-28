@@ -10,9 +10,11 @@ const html = require('./lib/html');
 const htmlParts = require('./views');
 const filters = require('./lib/filters');
 const subtitles = require('./lib/subtitles');
+const thumbs = require('./lib/thumbs');
 const fileParts = require('./lib/file-name');
 const file = require('./lib/file');
 const VIDEO_PATH = require('./lib/video-path');
+const noImage = require('./lib/no-image');
 
 const SUPPORTED_VIDEO_TYPES = process.env.SUPPORTED_VIDEO_TYPES ? process.env.SUPPORTED_VIDEO_TYPES.split(',') : [
   'avi',
@@ -37,11 +39,21 @@ const routes = [
       ${htmlParts.header({ title })}
       <article>
         <ul class="movie-list">
-        ${movies.map(movie => `
+        ${movies.map(movie => {
+          const foundThumb = thumbs
+            .find(thumb => thumb.name === fileParts(movie).fileWithoutExtension);
+
+          return `
           <li class="movie-link">
-            <a href="play?movie=${movie}">${normalize(movie)}</a>
+            <a href="play?movie=${movie}">
+              ${foundThumb
+                ? `<img src="data:img/jpg;base64,${foundThumb.base64}" />`
+                : `<img src="data:img/jpg;base64,${noImage.base64}" />`}
+              <span>${normalize(movie)}</span>
+            </a>
           </li>
-          `).join('')}
+          `;
+        }).join('')}
         </ul>
       </article>
       `;

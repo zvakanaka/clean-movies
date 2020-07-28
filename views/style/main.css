@@ -99,3 +99,12 @@ article:nth-child(2) {
 video {
   margin-top: calc(var(--large-margin) - var(--medium-margin));
 }
+
+.movie-link a {
+  display: flex;
+  align-items: center;
+}
+.movie-link img {
+  padding-right: 2rem;
+  width: 110px;
+}
