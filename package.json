@@ -13,7 +13,7 @@
     "files-in-dir": "^1.0.0",
     "hashify-matchify": "^1.0.0",
     "mere-server": "^2.0.0",
-    "restify": "^8.4.0",
+    "restify": "^8.5.1",
     "restify-plugins": "^1.6.0"
   },
   "devDependencies": {
