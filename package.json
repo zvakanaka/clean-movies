@@ -17,6 +17,6 @@
     "restify-plugins": "^1.6.0"
   },
   "devDependencies": {
-    "semistandard": "^14.2.0"
+    "semistandard": "^14.2.3"
   }
 }
